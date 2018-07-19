@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Frame Animation</title>
+	<style>
+		#run {
+			width: 180px;
+			height: 300px;
+			background-image: url(running.png);
+			animation: run 1.4s infinite steps(1, start);
+		}
+
+		@keyframes run {
+			0% {
+				background-position-x: 0;
+			}
+
+			14.28% {
+				background-position-x: 180px;
+			}
+
+			28.57% {
+				background-position-x: 360px;
+			}
+
+			42.86% {
+				background-position-x: 540px;
+			}
+
+			57.14% {
+				background-position-x: 720px;
+			}
+
+			71.43% {
+				background-position-x: 900px;
+			}
+
+			85.71% {
+				background-position-x: 1080px;
+			}
+
+			100% {
+				background-position-x: 0;
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="run">
+
+
+	</div>
+
+	<canvas id="canvas" width=180 height=300>
+
+	</canvas>
+
+	<script>
+		const canvas = document.getElementById("canvas");
+		const context = canvas.getContext("2d");
+		let i = 0;
+
+		const image = new Image();
+		image.src = "running.png";
+		image.onload = function () {
+			setInterval(() => {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				context.drawImage(image, 180 * i, 0, 180, 300, 0, 0, canvas.width, canvas.height);
+
+				if (i === 6) {
+					i = 0;
+				}
+				i++;
+			}, 200)
+		}
+
+
+	</script>
+</body>
+
+</html>
